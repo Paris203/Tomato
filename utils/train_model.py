@@ -316,7 +316,7 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
             else:
                 images, labels = data
             images, labels = images.to(device), labels.to(device)
-            print(f"images shape is :{images.shape}, label shape :{labels.shape}")
+            #print(f"images shape is :{images.shape}, label shape :{labels.shape}")
 
             optimizer.zero_grad()
             proposalN_windows_score, proposalN_windows_logits, indices, \
