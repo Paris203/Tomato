@@ -311,6 +311,7 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
         for i, data in enumerate(tqdm(trainloader)):
             images, labels = data
             images, labels = images.to(device), labels.to(device)
+            print(f"images shape is :{images.shape}")
 
             optimizer.zero_grad()
             raw_logits, local_logits = model(images)  # Assuming your model output structure
