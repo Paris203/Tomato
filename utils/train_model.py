@@ -309,7 +309,12 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
         epoch_train_labels, epoch_train_preds = [], []
 
         for i, data in enumerate(tqdm(trainloader)):
-            images, labels = data
+            # images, labels = data
+            # images, labels = images.to(device), labels.to(device)
+            if set == 'Tomato':
+                images, labels, _, _ = data
+            else:
+                images, labels = data
             images, labels = images.to(device), labels.to(device)
             print(f"images shape is :{images.shape}")
 
