@@ -319,12 +319,23 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
             print(f"images shape is :{images.shape}, label shape :{labels.shape}")
 
             optimizer.zero_grad()
-            raw_logits, local_logits = model(images)  # Assuming your model output structure
+            proposalN_windows_score, proposalN_windows_logits, indices, \
+            window_scores, _, raw_logits, local_logits, _ = model(images, epoch, i, 'train')
+
             raw_loss = criterion(raw_logits, labels)
-            total_loss = raw_loss
+            local_loss = criterion(local_logits, labels)
+            windowscls_loss = criterion(proposalN_windows_logits,
+                               labels.unsqueeze(1).repeat(1, proposalN).view(-1))
+
+            if epoch < 2:
+                total_loss = raw_loss
+            else:
+                total_loss = raw_loss + local_loss + windowscls_loss
 
             total_loss.backward()
+
             optimizer.step()
+
 
             pred = raw_logits.max(1, keepdim=True)[1]
             raw_correct += pred.eq(labels.view_as(pred)).sum().item()
