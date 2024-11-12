@@ -23,6 +23,20 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = CUDA_VISIBLE_DEVICES
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+class_names = [
+    'Late_blight', 
+    'Two-spotted_spider_mite', 
+    'Bacterial_spot', 
+    'Leaf_Mold', 
+    'Target_Spot', 
+    'Tomato_mosaic_virus', 
+    'healthy', 
+    'Early_blight', 
+    'Tomato_Yellow_Leaf_Curl_Virus', 
+    'Septoria_leaf_spot'
+]
+
+
 def main():
 
     #加载数据
@@ -70,7 +84,8 @@ def main():
           start_epoch=start_epoch,
           end_epoch=end_epoch,
           save_interval=save_interval,
-         load_checkpoint_path=False)
+         load_checkpoint_path=False,
+         class_names=class_names)
 
 
 if __name__ == '__main__':
