@@ -353,10 +353,10 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
                 = eval(model, trainloader, criterion, 'train', save_path, epoch)
 
         raw_loss_avg, windowscls_loss_avg, total_loss_avg, test_raw_accuracy, local_accuracy, local_loss_avg = eval(model, trainloader, criterion, 'train', save_path, epoch)
-        #test_metrics['raw_accuracy'].append(test_raw_accuracy)
+        test_metrics['raw_accuracy'].append(test_raw_accuracy)
 
-        # all_test_labels.extend(epoch_test_labels)
-        # all_test_preds.extend(epoch_test_preds)
+        all_test_labels.extend(epoch_test_labels)
+        all_test_preds.extend(epoch_test_preds)
 
         # Save accuracies for this epoch
         #save_accuracies(epoch, raw_accuracy, test_raw_accuracy, checkpoint_path)
@@ -375,6 +375,6 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
     plot_final_metrics(test_metrics, save_path, 'Test')
 
     # Plot final confusion matrices
-    # plot_confusion_matrix(all_train_labels, all_train_preds, class_names, save_path, 'Train')
-    # plot_confusion_matrix(all_test_labels, all_test_preds, class_names, save_path, 'Test')
+    plot_confusion_matrix(all_train_labels, all_train_preds, class_names, save_path, 'Train')
+    plot_confusion_matrix(all_test_labels, all_test_preds, class_names, save_path, 'Test')
 
