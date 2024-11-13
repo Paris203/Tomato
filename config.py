@@ -41,7 +41,7 @@ if set == 'CUB':
               [6, 6], [5, 7], [7, 5],
               [8, 8], [6, 10], [10, 6], [7, 9], [9, 7], [7, 10], [10, 7]]
 elif set == 'Tomato':
-    model_path = './checkpoint/cub'  # pth save path
+    model_path = './checkpoint/tomato'  # pth save path
     root = './datasets_m/Tomato'  # dataset path
     num_classes = 10
     # windows info for CUB
