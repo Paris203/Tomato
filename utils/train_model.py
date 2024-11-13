@@ -344,6 +344,17 @@ def train(model, trainloader, testloader, criterion, optimizer, scheduler,
             epoch_train_labels.extend(labels.cpu().numpy())
             epoch_train_preds.extend(pred.cpu().numpy().flatten())
 
+        # Append epoch results to all_train_labels and all_train_preds
+        all_train_labels.extend(epoch_train_labels)
+        all_train_preds.extend(epoch_train_preds)
+            
+        # Check if labels and predictions are not empty before plotting
+        if all_train_labels and all_train_preds:
+                print("\nPlotting confusion matrix for training set...")
+                plot_confusion_matrix(all_train_labels, all_train_preds, class_names, save_path, 'Train')
+        else:
+                print("Warning: No data for plotting the confusion matrix. Check if the model is correctly outputting predictions.")
+
         raw_accuracy = raw_correct / total_samples
         train_metrics['raw_accuracy'].append(raw_accuracy)
         scheduler.step()
