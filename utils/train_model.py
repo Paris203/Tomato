@@ -284,6 +284,7 @@ def save_accuracies(epoch, train_accuracy, test_accuracy, save_path):
 
 def train(model, trainloader, testloader, criterion, optimizer, scheduler,
           save_path, checkpoint_path, start_epoch, end_epoch, save_interval, load_checkpoint_path, class_names):
+                  
     create_directories(save_path, checkpoint_path)
 
     train_metrics = {'learning_rate': [], 'raw_accuracy': [], 'local_accuracy': [], 'total_loss_avg': []}
