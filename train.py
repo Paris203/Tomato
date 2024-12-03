@@ -45,7 +45,7 @@ def plot_confusion_matrix(y_true, y_pred):
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot(cmap=plt.cm.Blues)
     plt.title(f'Confusion Matrix for resnet 18')
-    plt.savefig(f'resnet.png')
+    plt.savefig(f'./resnet.png')
     plt.show()
 
 def main():
@@ -118,7 +118,7 @@ def main():
     print(classification_report(all_labels, all_preds, zero_division=0))
     
     # # Plot the confusion matrix
-    print(plot_confusion_matrix(all_labels, all_preds))
+    plot_confusion_matrix(all_labels, all_preds)
     #print(all_preds)
 
 
