@@ -95,6 +95,8 @@ def main():
     with torch.no_grad():
         for inputs, labels in testloader:
             inputs, labels =  inputs.to(device), labels.to(device)
+            print(f"inputs shape: {inputs.shape}")
+            proposalN_windows_score, proposalN_windows_logits, indices, \
             window_scores, _, raw_logits, local_logits, _  = model(inputs, 1, 6, 'test')
             _, preds = torch.max(raw_logits, 1)
             all_preds.extend(preds.cpu().numpy())
