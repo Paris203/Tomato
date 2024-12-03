@@ -87,6 +87,28 @@ def main():
          load_checkpoint_path=False,
          )
 
+    # Evaluate the model on the test set
+    model.eval()
+    all_preds = []
+    all_labels = []
+    
+    with torch.no_grad():
+        for inputs, labels in testloader:
+            inputs, labels =  inputs.to(device), labels.to(device)
+             window_scores, _, raw_logits, local_logits, _  = model(inputs, 1, 6, status)
+            _, preds = torch.max(raw_logits, 1)
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+    
+    # Print the classification report
+    # print(f'\nClassification Report for {model_name}')
+    # print(classification_report(all_labels, all_preds, zero_division=0))
+    
+    # # Plot the confusion matrix
+    # plot_confusion_matrix(all_labels, all_preds, model_name)
+print(all_preds)
+
+
 
 if __name__ == '__main__':
     main()
