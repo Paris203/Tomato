@@ -106,7 +106,7 @@ def main():
     
     # # Plot the confusion matrix
     # plot_confusion_matrix(all_labels, all_preds, model_name)
-print(all_preds)
+    print(all_preds)
 
 
 
