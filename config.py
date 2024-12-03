@@ -19,7 +19,7 @@ lr_milestones = [60, 100]
 lr_decay_rate = 0.1
 weight_decay = 1e-4
 stride = 32
-channels = 2048
+channels = 512
 input_size = 448
 
 # The pth path of pretrained model
