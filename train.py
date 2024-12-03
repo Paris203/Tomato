@@ -85,7 +85,7 @@ def main():
           end_epoch=end_epoch,
           save_interval=save_interval,
          load_checkpoint_path=False,
-         class_names=class_names)
+         )
 
 
 if __name__ == '__main__':
