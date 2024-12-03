@@ -14,6 +14,8 @@ from networks.model import MainNet
 import sys
 import os
 
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+
 # Add the parent directory of 'utils' and 'datasets' to the Python path
 # sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 #
@@ -95,7 +97,7 @@ def main():
     with torch.no_grad():
         for inputs, labels in testloader:
             inputs, labels =  inputs.to(device), labels.to(device)
-            print(f"inputs shape: {inputs.shape}")
+            #print(f"inputs shape: {inputs.shape}")
             proposalN_windows_score, proposalN_windows_logits, indices, \
             window_scores, _, raw_logits, local_logits, _  = model(inputs, 1, 6, 'test')
             _, preds = torch.max(raw_logits, 1)
@@ -104,11 +106,11 @@ def main():
     
     # Print the classification report
     # print(f'\nClassification Report for {model_name}')
-    # print(classification_report(all_labels, all_preds, zero_division=0))
+    print(classification_report(all_labels, all_preds, zero_division=0))
     
     # # Plot the confusion matrix
     # plot_confusion_matrix(all_labels, all_preds, model_name)
-    print(all_preds)
+    #print(all_preds)
 
 
 
