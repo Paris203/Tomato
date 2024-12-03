@@ -15,6 +15,7 @@ import sys
 import os
 
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+import matplotlib.pyplot as plt
 
 # Add the parent directory of 'utils' and 'datasets' to the Python path
 # sys.path.append(os.path.dirname(os.path.abspath(__file__)))
