@@ -257,16 +257,27 @@ def _resnet(arch, block, layers, pretrained, pth_path, **kwargs):
 #     return model
 
 
-def resnet18( **kwargs):
-    r"""ResNet-18 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
+# def resnet18( **kwargs):
+#     r"""ResNet-18 model from
+#     `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
 
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
-    """
-    return _resnet('resnet18', BasicBlock, [2, 2, 2, 2],
-                   **kwargs)
+#     Args:
+#         pretrained (bool): If True, returns a model pre-trained on ImageNet
+#         progress (bool): If True, displays a progress bar of the download to stderr
+#     """
+#     return _resnet('resnet18', BasicBlock, [2, 2, 2, 2],
+#                    **kwargs)
+
+# Example: Define ResNet-18
+def resnet18(pretrained=True, **kwargs):
+    return _resnet(
+        arch='resnet18', 
+        block=BasicBlock, 
+        layers=[2, 2, 2, 2], 
+        pretrained=pretrained, 
+        pth_path=model_urls['resnet18'], 
+        **kwargs
+    )
 
 
 
