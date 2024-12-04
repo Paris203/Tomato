@@ -231,15 +231,15 @@ class ResNet(nn.Module):
         x = self.layer4[2:](conv5_b)
 
         fm = x
-        print("fm", fm.shape)
+        #print("fm", fm.shape)
         x = self.avgpool(x)
-        print("avgpool", x.shape)
+        #print("avgpool", x.shape)
         x = x.view(x.size(0), -1)
-        print("after reshaping x", x.shape)
+        #print("after reshaping x", x.shape)
         x = self.dropout(x)
-        print("after applaying dropout", x.shape)
+        #print("after applaying dropout", x.shape)
         embeeding = x
-        print("embeeding", embeeding.shape)
+        #print("embeeding", embeeding.shape)
 
 
         return fm, embeeding, conv5_b
