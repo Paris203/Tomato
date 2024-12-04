@@ -239,7 +239,7 @@ class ResNet(nn.Module):
         x = self.dropout(x)
         print("after applaying dropout", x.shape)
         embeeding = x
-        #print("embeeding", embeeding.shape)
+        print("embeeding", embeeding.shape)
 
 
         return fm, embeeding, conv5_b
