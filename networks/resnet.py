@@ -237,6 +237,7 @@ class ResNet(nn.Module):
         x = x.view(x.size(0), -1)
         print("after reshaping x", x.shape)
         x = self.dropout(x)
+        print("after applaying dropout", x.shape)
         embeeding = x
         #print("embeeding", embeeding.shape)
 
