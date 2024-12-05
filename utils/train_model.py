@@ -136,6 +136,8 @@ def train(model,
 
             proposalN_windows_score, proposalN_windows_logits, indices, \
             window_scores, _, raw_logits, local_logits, _ = model(images, epoch, i, 'train')
+            #print(f"the output size is: {raw_logits.shape}")
+            #print(f"the local output size : {local_logits.shape}")
 
             raw_loss = criterion(raw_logits, labels)
             local_loss = criterion(local_logits, labels)
@@ -216,3 +218,8 @@ def train(model,
         #     idx_list = [int(name.replace('epoch', '').replace('.pth', '')) for name in checkpoint_list]
         #     min_idx = min(idx_list)
         #     os.remove(os.path.join(checkpoint_path, 'epoch' + str(min_idx) + '.pth'))
+
+
+
+
+

@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torch.hub import load_state_dict_from_url
 
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
@@ -234,7 +235,9 @@ class ResNet(nn.Module):
         x = self.avgpool(x)
         #print("avgpool", x.shape)
         x = x.view(x.size(0), -1)
+        #print("after reshaping x", x.shape)
         x = self.dropout(x)
+        #print("after applaying dropout", x.shape)
         embeeding = x
         #print("embeeding", embeeding.shape)
 
@@ -242,14 +245,15 @@ class ResNet(nn.Module):
         return fm, embeeding, conv5_b
 
 
-def _resnet(arch, block, layers, pretrained, pth_path, **kwargs):
-    model = ResNet(block, layers, **kwargs)
-    if pretrained:
-        state_dict = torch.load(pth_path, weights_only=True)
-        #print(state_dict.keys())
-        model.load_state_dict(state_dict)
+# def _resnet(arch, block, layers, pretrained, pth_path, **kwargs):
+#     model = ResNet(block, layers, **kwargs)
+#     if pretrained:
+#         state_dict = torch.load(pth_path, weights_only=True)
+#         #print(state_dict.keys())
+#         model.load_state_dict(state_dict)
     
-    return model
+#     return model
+
 # change by Diallo
 # def _resnet(arch, block,layers,  **kwargs):
 #     model = ResNet(block, layers, **kwargs)
@@ -257,16 +261,39 @@ def _resnet(arch, block, layers, pretrained, pth_path, **kwargs):
 #     return model
 
 
-def resnet18( **kwargs):
-    r"""ResNet-18 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
+# def resnet18( **kwargs):
+#     r"""ResNet-18 model from
+#     `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
 
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
-    """
-    return _resnet('resnet18', BasicBlock, [2, 2, 2, 2],
-                   **kwargs)
+#     Args:
+#         pretrained (bool): If True, returns a model pre-trained on ImageNet
+#         progress (bool): If True, displays a progress bar of the download to stderr
+#     """
+#     return _resnet('resnet18', BasicBlock, [2, 2, 2, 2],
+#                    **kwargs)
+
+def _resnet(arch, block, layers, pretrained, pth_path, **kwargs): 
+    model = ResNet(block, layers, **kwargs)
+    if pretrained:
+        if pth_path.startswith('http'):  # Check if pth_path is a URL
+            # Download the state dict from the URL
+            state_dict = load_state_dict_from_url(pth_path, map_location='cpu', progress=True)
+        else:
+            # Load state dict from a local file
+            state_dict = torch.load(pth_path, map_location='cpu')
+        model.load_state_dict(state_dict)
+    return model
+
+# Example: Define ResNet-18
+def resnet18(pretrained=True, **kwargs):
+    return _resnet(
+        arch='resnet18', 
+        block=BasicBlock, 
+        layers=[2, 2, 2, 2], 
+        pretrained=pretrained, 
+        pth_path=model_urls['resnet18'], 
+        **kwargs
+    )
 
 
 

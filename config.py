@@ -13,13 +13,13 @@ vis_num = batch_size  # The number of visualized images in tensorboard
 eval_trainset = False  # Whether or not evaluate trainset
 save_interval = 1
 max_checkpoint_num = 200
-end_epoch = 2
+end_epoch = 50
 init_lr = 0.001
 lr_milestones = [60, 100]
 lr_decay_rate = 0.1
 weight_decay = 1e-4
 stride = 32
-channels = 2048
+channels = 512
 input_size = 448
 
 # The pth path of pretrained model
@@ -41,7 +41,7 @@ if set == 'CUB':
               [6, 6], [5, 7], [7, 5],
               [8, 8], [6, 10], [10, 6], [7, 9], [9, 7], [7, 10], [10, 7]]
 elif set == 'Tomato':
-    model_path = './checkpoint/cub'  # pth save path
+    model_path = './checkpoint/tomato'  # pth save path
     root = './datasets_m/Tomato'  # dataset path
     num_classes = 10
     # windows info for CUB
