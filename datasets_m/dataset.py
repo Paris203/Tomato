@@ -15,9 +15,9 @@ class TomatoLeafDisease():
         
         # Set train/validation folder paths
         if is_train:
-            self.data_folder = os.path.join(self.root, 'Train')
+            self.data_folder = os.path.join(self.root, 'trainCompletaMod5.1')
         else:
-            self.data_folder = os.path.join(self.root, 'Test')
+            self.data_folder = os.path.join(self.root, 'test 2')
         
         #print(f"Loading data from: {self.data_folder}")  # Debug print to check paths
         
