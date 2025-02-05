@@ -5,7 +5,7 @@ import numpy as np
 CUDA_VISIBLE_DEVICES = '0'  # The current version only supports one GPU training
 
 
-set = 'Tomato'  # Different dataset with different
+set = 'cassava'  # Different dataset with different
 model_name = ''
 
 batch_size = 6
@@ -43,7 +43,7 @@ if set == 'CUB':
 elif set == 'cassava':
     model_path = './checkpoint/tomato'  # pth save path
     root = './datasets_m/cassava'  # dataset path
-    num_classes = 10
+    num_classes = 5
     # windows info for CUB
     N_list = [2, 3, 2]
     proposalN = sum(N_list)  # proposal window num
