@@ -31,7 +31,7 @@ def read_dataset(input_size, batch_size, root, set):
         testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
                                                  shuffle=False, num_workers=8, drop_last=False)
 
-    elif set == 'Tomato':
+    elif set == 'cassava':
         print('Loading Tomato trainset')
         trainset = dataset.TomatoLeafDisease(input_size=input_size, root=root, is_train=True)
         trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
