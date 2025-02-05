@@ -40,9 +40,9 @@ if set == 'CUB':
     ratios = [[4, 4], [3, 5], [5, 3],
               [6, 6], [5, 7], [7, 5],
               [8, 8], [6, 10], [10, 6], [7, 9], [9, 7], [7, 10], [10, 7]]
-elif set == 'Tomato':
+elif set == 'cassava':
     model_path = './checkpoint/tomato'  # pth save path
-    root = './datasets_m/Tomato'  # dataset path
+    root = './datasets_m/cassava'  # dataset path
     num_classes = 10
     # windows info for CUB
     N_list = [2, 3, 2]
